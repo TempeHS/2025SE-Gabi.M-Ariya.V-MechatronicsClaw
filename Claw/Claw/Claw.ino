@@ -1,17 +1,16 @@
-#include "Arm.h"
+#include "Claw.h"
 
-Arm arm(12);
-
+Claw claw(11);
 Servo servo;
 
 void setup() {
   Serial.begin(9600);
-  arm.init();
+  claw.init();
 }
 
 void loop() {
-  arm.moveUp();
+  claw.grabCube();
   delay(1000);
-  arm.moveDown();
+  claw.releaseCube();
   delay(1000);
 }
