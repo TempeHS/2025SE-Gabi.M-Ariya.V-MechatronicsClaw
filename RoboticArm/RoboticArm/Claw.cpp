@@ -1,27 +1,19 @@
 #include "Claw.h"
+#include "MyServo.h"
 
-Claw::Claw(int pin)
+MyServo clawServo;
+
+Claw::Claw(byte pin)
 {
   this->pin = pin;
 }
 
-void Claw::init()
+void Claw::open()
 {
-  servo.attach(pin);
-  pinMode(pin, INPUT_PULLUP);
-}
-void Claw::grabCube()
-{
-  Serial.println("Grabbing cube");
-  int angle = 90;
-  servo.write(angle);
-  Serial.println("Claw closed");
+  clawServo.writevalue(100);
 }
 
-void Claw::releaseCube()
+void Claw::close()
 {
-  Serial.println("Releasing cube");
-  int angle = 180;
-  servo.write(angle);
-  Serial.print("Claw open");
+  clawServo.writevalue(175);
 }

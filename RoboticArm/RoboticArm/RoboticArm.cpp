@@ -1,42 +1,52 @@
 #include "RoboticArm.h"
 #include <Arduino.h>
 
-RoboticArm::RoboticArm(int basePin, int armPin, int clawPin) : base(BasePin), arm(ArmPin), claw(ClawPin)) {}
+RoboticArm::RoboticArm(Base &base, Arm &arm, Claw &claw)
+    : base(base), arm(arm), claw(claw) {}
 
-//init all servos
+
 void RoboticArm::init()
 {
-  Serial.println("Initializing program");
   base.init();
+  arm.init();
+  claw.init();
 }
 
 void RoboticArm::moveToStartPosition()
 { 
-  wrist.moveDown();
   arm.moveDown();
-  claw.release();
-  Serial.println("Centered");
+  delay(50);
+  claw.open();
+  delay(50);
 }
 
 void RoboticArm::moveToCubePosition(bool isLeft)
 {
   if(isLeft) {
     base.moveLeft();
+    delay(100);
   } else {
     base.moveRight();
+    delay(100);
   }
 
 }
+
 void RoboticArm::grabCube()
 {
-  Serial.println("grabbing cube.");
-  claw.grab();
+  claw.close();
+  delay(50);
+  arm.moveUp();
+  delay(50);
 }
 
 void RoboticArm::releaseCube()
 {
-  Claw.release();
-  Serial.println("cube released");
+  arm.moveDown();
+  delay(50);
+  claw.open();
+  delay(50);
+  
 }
 
 void RoboticArm::operateArm()
@@ -45,6 +55,6 @@ void RoboticArm::operateArm()
   delay(3000);
 
   bool isLeft = random(2) == 0;
-  moveToCubePosition();
+  moveToCubePosition(isLeft);
   delay(5000);
 }

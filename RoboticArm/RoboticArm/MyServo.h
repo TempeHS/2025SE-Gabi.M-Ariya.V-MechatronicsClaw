@@ -2,20 +2,20 @@
 #define MY_SERVO_H
 
 #include <Servo.h>
+#include <Arduino.h>
 
 class MyServo
 {
 protected:
+  byte pin;
   Servo myServo;
-  int pin;
-
 public:
   MyServo() {} //do not use
-  MyServo(int pin);
+  MyServo(byte pin);
 
   //init the pin for the Servo
-  virtual void init();
-  virtual void writeValue(int value);
+  void init();
+  void writevalue(byte value);
 
 };
 

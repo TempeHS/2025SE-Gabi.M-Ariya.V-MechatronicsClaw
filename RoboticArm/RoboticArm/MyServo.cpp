@@ -1,13 +1,16 @@
 #include "MyServo.h"
 
-MyServo::MyServo(int pin) : pin(pin) {}
+MyServo::MyServo(byte pin)
+{
+  this->pin = pin;
+}
 
 void MyServo::init()
 {
   myServo.attach(pin);
 }
 
-void MyServo::writeValue(int value)
+void MyServo::writevalue(byte value)
 {
   myServo.write(value);
 }

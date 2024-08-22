@@ -3,18 +3,17 @@
 
 #include <Arduino.h>
 #include "MyServo.h"
-class Claw
+
+class Claw : public MyServo
 {
 private:
-  int pin;
-  // Servo servo;
+  
 public:
   Claw() {}//do not use
-  Claw(int pin);
+  Claw(byte pin);
 
-  void init();
-  void grabCube();
-  void releaseCube();
+  void open();
+  void close();
 };
 
 #endif

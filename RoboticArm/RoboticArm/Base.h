@@ -1,15 +1,18 @@
 #ifndef BASE_H
 #define BASE_H
 
+#include <Arduino.h>
 #include "MyServo.h"
 
-class Base
+class Base : public MyServo
+
 {
-private:
-  int pin;
+protected: 
+
 public:
-  // Base() {} //do not use(default constructor)
-  Base(int pin);
+  Base() {} //do not use(default constructor)
+  Base(byte pin);
+
   void moveLeft();
   void moveRight();
 };

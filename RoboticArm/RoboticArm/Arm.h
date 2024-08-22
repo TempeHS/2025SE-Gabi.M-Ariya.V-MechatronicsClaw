@@ -4,16 +4,15 @@
 #include <Arduino.h>
 #include "MyServo.h"
 
-class Arm
+class Arm : public MyServo
+
 {
 private:
-  int pin;
-  Servo servo;
+  
 public:
   Arm() {}//do not use
-  Arm(int pin);
-
-  void init();
+  Arm(byte pin);
+  
   void moveUp();
   void moveDown();
 };
